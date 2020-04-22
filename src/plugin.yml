@@ -1,0 +1,10 @@
+
+name: Rekurencja
+version: 1
+author: Rekurencja
+main: pl.rekurencja.Main
+api-version: 1.15
+commands:
+  rekurencjadoc:
+    description: Dokumentacja pluginu
+    usage: /<command>
