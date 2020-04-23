@@ -12,15 +12,7 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/spigot-api-1.15.2-R0.1-20200417.044202-89.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/LightAPI-fork-3.4.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/spigot-api-1.15.2-R0.1-20200423.014400-96.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

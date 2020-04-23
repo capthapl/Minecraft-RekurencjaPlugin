@@ -22,7 +22,7 @@ public class RecipeController {
         NamespacedKey stringBandageKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("Rekurencja"),"string_bandage_recipe");
         Bukkit.addRecipe(CustomItemsRepository.GetCustomItemRecipe(ECustomItems.StrongBandage,stringBandageKey));
 
-        NamespacedKey diamondBowKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("Rekurencja"),"diamond_bow");
+        NamespacedKey diamondBowKey = new NamespacedKey(Bukkit.getPluginManager().getPlugin("Rekurencja"),"diamond_bow_recipe");
         Bukkit.addRecipe(CustomItemsRepository.GetCustomItemRecipe(ECustomItems.DiamondBow,diamondBowKey));
     }
 

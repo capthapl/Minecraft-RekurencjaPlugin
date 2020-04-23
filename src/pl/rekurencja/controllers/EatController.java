@@ -71,7 +71,7 @@ public class EatController {
     }
 
     public static Boolean ItemEqualsToCustom(ItemStack p, ItemStack q){
-        if(p.getItemMeta().hasLore() && q.getItemMeta().hasLore() && (p.getItemMeta().getLore().equals(q .getItemMeta().getLore())) && (p.getItemMeta().getDisplayName().equals(q .getItemMeta().getDisplayName()))
+        if(p.getItemMeta().hasLore() && q.getItemMeta().hasLore() && (p.getItemMeta().getLore().equals(q .getItemMeta().getLore()))
         && (p.getType() == q .getType())) {
             return true;
         }
