@@ -27,6 +27,8 @@ public class CustomItemsRepository {
                 ItemStack diamondBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Diamentowy łuk","Drogi, ale potezny");
                 diamondBow.getItemMeta().setCustomModelData(10);
                 diamondBow = RecipeController.SetGlowAndNoEnchant(diamondBow);
+                diamondBow.addEnchantment(Enchantment.DURABILITY,3);
+                diamondBow.addEnchantment(Enchantment.MENDING,1);
                 return diamondBow;
             default: throw new NotImplementedException();
         }

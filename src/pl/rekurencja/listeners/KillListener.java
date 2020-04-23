@@ -16,7 +16,10 @@ public class KillListener implements Listener {
     @EventHandler
     public void EntityDeathEvent(EntityDeathEvent event){
         LootController controller = new LootController();
-        if(event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equals("Death Dance")){
+        if(event.getEntity().getType() == EntityType.PLAYER){
+            event.getEntity().sendMessage("Smierc na koordynatach: " + event.getEntity().getLocation().getX() + " : " + event.getEntity().getLocation().getY() + " : " + event.getEntity().getLocation().getZ());
+        }
+        else if(event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equals("Death Dance")){
             controller.DropItemIfKilledByPlayerWithPercentChanceCustomMob(event, EntityType.ZOMBIE, LootRepository.GetLootFromEMobType(EMob.DEATH_DANCE),"Death Dance");
         }else {
             controller.DropItemIfKilledByPlayerWithPercentChance(event, EntityType.ZOMBIE, LootRepository.GetLootFromEMobType(EMob.ZOMBIE));
