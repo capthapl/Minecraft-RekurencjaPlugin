@@ -14,6 +14,9 @@ import pl.rekurencja.controllers.RecipeController;
 import pl.rekurencja.enums.ECustomItems;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomItemsRepository {
     public static ItemStack GetCustomItem(ECustomItems customItem){
         switch (customItem){
@@ -32,6 +35,14 @@ public class CustomItemsRepository {
                 return diamondBow;
             default: throw new NotImplementedException();
         }
+    }
+
+    public static ArrayList<ItemStack> GetBlockedInAnvilEnchantCustomItems(){
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        items.add(GetCustomItem(ECustomItems.DiamondBow));
+        items.add(GetCustomItem(ECustomItems.Bandage));
+        items.add(GetCustomItem(ECustomItems.StrongBandage));
+        return items;
     }
 
     public static void SetCustomItemPotionEffect(ECustomItems customItem, PlayerInteractEvent playerInteractEvent){

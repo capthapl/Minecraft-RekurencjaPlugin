@@ -26,6 +26,7 @@ import java.util.Random;
 public class SpawnListener implements Listener {
     @EventHandler
     public void OnMobSpawned(CreatureSpawnEvent event){
-        CustomMobRepository.SetLivingEntityByChance(event.getEntity());
+            CustomMobRepository cmr = new CustomMobRepository();
+            cmr.SetLivingEntityByChance(event.getEntity());
     }
 }

@@ -14,6 +14,6 @@ public abstract class APercentEntity {
     public Boolean RollChance(){
         Random rnd = new Random();
         double i = 0 + (100 - 0) * rnd.nextDouble();
-        return i <=PercentChance;
+        return i <= PercentChance;
     }
 }

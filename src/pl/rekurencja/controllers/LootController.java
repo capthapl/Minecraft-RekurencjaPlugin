@@ -31,7 +31,6 @@ public class LootController {
 
         for(ChanceItemStack item: items){
             double i = 0 + (100 - 0) * rnd.nextDouble();
-            Bukkit.getLogger().info("chance loot: " + Double.toString(i));
 
             if(i <= item.LootChance){
                 DropItemIfKilledByPlayer(event,entityType,item);
@@ -55,7 +54,6 @@ public class LootController {
                     Map<Enchantment,Integer> enchants = itemInHand.getEnchantments();
                     if (event.getEntityType() == entityType) {
                         if(enchants.containsKey(Enchantment.LOOT_BONUS_MOBS)){
-                            Bukkit.getLogger().info(enchants.get(Enchantment.LOOT_BONUS_MOBS).toString());
                             switch (enchants.get(Enchantment.LOOT_BONUS_MOBS)){
                                 case 1:
                                     DropItemAtEventEntityLocation(event, item.GetItemFromFortuneLevel(1));
@@ -68,8 +66,7 @@ public class LootController {
                                     break;
                             }
                         }else {
-                                DropItemAtEventEntityLocation(event, item.GetItemFromFortuneLevel(0));
-
+                            DropItemAtEventEntityLocation(event, item.GetItemFromFortuneLevel(0));
                         }
                     }
                 }

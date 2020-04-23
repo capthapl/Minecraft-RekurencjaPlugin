@@ -19,33 +19,34 @@ import java.util.ArrayList;
 
 public class CustomMobRepository {
 
-    public static ArrayList<CustomMob> GetEntityList(LivingEntity livingEntity){
+    public ArrayList<CustomMob> GetEntityList(LivingEntity livingEntity){
         ArrayList<CustomMob> mobList = new ArrayList<CustomMob>();
         switch (livingEntity.getType()){
             case ZOMBIE:
-                mobList.add(EMobToCustomMob(EMob.DEATH_DANCE,livingEntity));
+                mobList.add(new CustomMob(EMob.DEATH_DANCE,2.5F));
                 break;
             default: return mobList;
         }
+
         return mobList;
     }
 
-    public static LivingEntity SetLivingEntityByChance(LivingEntity entity){
-        ArrayList<CustomMob> customMobs = CustomMobRepository.GetEntityList(entity);
+    public void SetLivingEntityByChance(LivingEntity entity){
+        ArrayList<CustomMob> customMobs = GetEntityList(entity);
         if(customMobs.size() > 0){
             for(int i = 0;i<customMobs.size();i++){
+
                 if(customMobs.get(i).RollChance()){
-                    entity = customMobs.get(i).Entity;
-                    return entity;
+                    EMobToCustomMob(customMobs.get(i).EMob,entity);
+                    return;
                 }
             }
         }
-        return entity;
     }
 
 
 
-    private static CustomMob EMobToCustomMob(EMob mob,LivingEntity livingEntity){
+    private void EMobToCustomMob(EMob mob,LivingEntity livingEntity){
         CustomMob customMob;
         livingEntity.setMetadata("custom",new FixedMetadataValue(Bukkit.getPluginManager().getPlugin("Rekurencja"),true));
         switch (mob){
@@ -63,8 +64,7 @@ public class CustomMobRepository {
                 livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40D);
                 livingEntity.setHealth(40D);
                 livingEntity.setCustomName("Death Dance");
-                customMob = new CustomMob(livingEntity,2.5F);
-                return customMob;
+                break;
             default: throw new NotImplementedException();
         }
     }

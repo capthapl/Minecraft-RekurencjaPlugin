@@ -1,4 +1,5 @@
 package pl.rekurencja.controllers;
+import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -42,31 +43,32 @@ public class EatController {
         }
     }
 
-    public void EatAndGetEffectWithCustomItem(PlayerInteractEvent event, ECustomItems customItem){
+    public void EatAndGetEffectWithCustomItem(@NotNull PlayerInteractEvent event, @NotNull ECustomItems customItem ){
         ItemStack customItemFromRepository = CustomItemsRepository.GetCustomItem(customItem);
         final String cooldownId = event.getPlayer().getUniqueId().toString()+customItem.toString();
+        if(event.getPlayer().getInventory() != null && customItemFromRepository != null) {
+            if (ItemEqualsToCustom(event.getPlayer().getInventory().getItemInMainHand(), customItemFromRepository) && !cooldowns.contains(cooldownId)) {
+                event.setCancelled(true);
+                CustomItemsRepository.SetCustomItemPotionEffect(customItem, event);
+                event.getPlayer().getInventory().removeItem(customItemFromRepository);
+                cooldowns.add(cooldownId);
+                new BukkitRunnable() {
 
-        if(ItemEqualsToCustom(event.getPlayer().getInventory().getItemInMainHand(),customItemFromRepository) &&  !cooldowns.contains(cooldownId)) {
-            event.setCancelled(true);
-            CustomItemsRepository.SetCustomItemPotionEffect(customItem,event);
-            event.getPlayer().getInventory().removeItem(customItemFromRepository);
-            cooldowns.add(cooldownId);
-            new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_BREATH, 1.0F, 1.0F);
+                        new BukkitRunnable() {
 
-                @Override
-                public void run() {
-                    event.getPlayer().playSound( event.getPlayer().getLocation(), Sound.ENTITY_PLAYER_BREATH, 1.0F, 1.0F);
-                    new BukkitRunnable() {
-
-                        @Override
-                        public void run() {
-                            cooldowns.remove(cooldownId);
-                        }
-                    }.runTaskLater(Bukkit.getPluginManager().getPlugin("Rekurencja"), 10);
-                }
-            }.runTaskLater(Bukkit.getPluginManager().getPlugin("Rekurencja"), 20);
-        }else{
-            event.setCancelled(false);
+                            @Override
+                            public void run() {
+                                cooldowns.remove(cooldownId);
+                            }
+                        }.runTaskLater(Bukkit.getPluginManager().getPlugin("Rekurencja"), 10);
+                    }
+                }.runTaskLater(Bukkit.getPluginManager().getPlugin("Rekurencja"), 20);
+            } else {
+                event.setCancelled(false);
+            }
         }
     }
 

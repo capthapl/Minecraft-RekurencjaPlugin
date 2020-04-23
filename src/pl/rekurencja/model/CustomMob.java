@@ -2,13 +2,14 @@ package pl.rekurencja.model;
 
 import com.sun.istack.internal.NotNull;
 import org.bukkit.entity.LivingEntity;
+import pl.rekurencja.enums.EMob;
 
 public class CustomMob extends  APercentEntity {
     @NotNull
-    public LivingEntity Entity;
+    public EMob EMob;
 
-    public CustomMob(LivingEntity entity,float percentSpawnChance){
+    public CustomMob(EMob eMob, float percentSpawnChance){
         super(percentSpawnChance);
-        this.Entity = entity;
+        this.EMob = eMob;
     }
 }
