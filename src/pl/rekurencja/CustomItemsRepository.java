@@ -10,6 +10,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import pl.rekurencja.controllers.LootController;
 import pl.rekurencja.controllers.RecipeController;
 import pl.rekurencja.enums.ECustomItems;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -34,10 +35,12 @@ public class CustomItemsRepository {
                 diamondBow.addEnchantment(Enchantment.MENDING,1);
                 return diamondBow;
             case DeerBow:
-                Random r = new Random();
-                int avgDmg = r.nextInt(10 + 20) - 20; //-20 to 10 dmg
+                double deerBowDmgModifier = LootController.GenerateGauss(20,0,-60,40);
+                java.text.DecimalFormat df=new java.text.DecimalFormat("0.0");
+
                 ItemStack deerBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Łuk z rogu jelenia",
-                        "Łuk ze zmienną ilością obrażeń","Modyfikator obrazen:" + Integer.toString(avgDmg));
+
+                        "Łuk ze zmienną ilością obrażeń","Modyfikator obrazen:" + df.format(deerBowDmgModifier)+"%");
                 return deerBow;
             default: throw new NotImplementedException();
         }

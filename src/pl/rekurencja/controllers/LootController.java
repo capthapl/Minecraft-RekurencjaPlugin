@@ -72,4 +72,23 @@ public class LootController {
             }
         }
     }
+
+
+    public static double GenerateGauss(double deviation, double shift,double min,double max){
+        Random r = new Random();
+        while(true) {
+            double val = (r.nextGaussian() * GenerateGaussWOShift(40) + shift);
+            if(val<= max && val >= min){
+                return val;
+            }
+        }
+    }
+
+    private static double GenerateGaussWOShift(double deviation){
+        Random r = new Random();
+        while(true) {
+            double val =(r.nextGaussian()) * deviation;
+            return val;
+        }
+    }
 }

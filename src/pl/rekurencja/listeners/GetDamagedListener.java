@@ -34,9 +34,9 @@ public class GetDamagedListener implements Listener {
         }else if(arrow.getMetadata("customDeerBow").size()>0){
             if(arrow.getMetadata("customDeerBow").get(0).asString().equals(ECustomItems.DeerBow.toString())){
                 String loreDamage = arrow.getMetadata("customDeerBowDamage").get(0).asString().split(":")[1];
-                int damage = Integer.getInteger(loreDamage);
-
-                e.setDamage(e.getDamage()+(double)damage);
+                double damage = Double.parseDouble(loreDamage.replace("%",""));
+                double modifier = (damage/100) * e.getDamage();
+                e.setDamage(e.getDamage()+modifier);
             }
         }
 
