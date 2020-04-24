@@ -16,6 +16,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CustomItemsRepository {
     public static ItemStack GetCustomItem(ECustomItems customItem){
@@ -28,11 +29,16 @@ public class CustomItemsRepository {
                 return new ItemStack(Material.QUARTZ,4);
             case DiamondBow:
                 ItemStack diamondBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Diamentowy łuk","Drogi, ale potezny");
-                diamondBow.getItemMeta().setCustomModelData(10);
                 diamondBow = RecipeController.SetGlowAndNoEnchant(diamondBow);
                 diamondBow.addEnchantment(Enchantment.DURABILITY,3);
                 diamondBow.addEnchantment(Enchantment.MENDING,1);
                 return diamondBow;
+            case DeerBow:
+                Random r = new Random();
+                int avgDmg = r.nextInt(20) - 10; //-10 to 10 dmg
+                ItemStack deerBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Łuk z rogu jelenia",
+                        "Łuk ze zmienną ilością obrażeń","Modyfikator obrazen:" + Integer.toString(avgDmg));
+                return deerBow;
             default: throw new NotImplementedException();
         }
     }

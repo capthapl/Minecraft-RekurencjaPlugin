@@ -7,5 +7,6 @@ public enum EMob {
     SPIDER,
     CAVE_SPIDER,
     WITHER_SKELETON,
-    DEATH_DANCE
+    DEATH_DANCE,
+    PHANTOM_DANCER
 }

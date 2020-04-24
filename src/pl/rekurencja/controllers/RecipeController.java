@@ -37,6 +37,18 @@ public class RecipeController {
         return item;
     }
 
+    public static ItemStack SetNameAndLore(ItemStack item,String displayName,String lore,String loreLine2){
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(displayName);
+        ArrayList<String> newLore = new ArrayList<String>();
+        newLore.add(lore);
+        newLore.add(loreLine2);
+        meta.setLore(newLore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
     public static ItemStack SetGlowAndNoEnchant(ItemStack item){
         item.addUnsafeEnchantment(Enchantment.LUCK, 0);
         ItemMeta meta = item.getItemMeta();

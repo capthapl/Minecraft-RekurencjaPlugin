@@ -28,7 +28,6 @@ public class LootController {
     public void DropItemIfKilledByPlayerWithPercentChance(EntityDeathEvent event, EntityType entityType, ArrayList<ChanceItemStack> items){
         Random rnd = new Random();
 
-
         for(ChanceItemStack item: items){
             double i = 0 + (100 - 0) * rnd.nextDouble();
 

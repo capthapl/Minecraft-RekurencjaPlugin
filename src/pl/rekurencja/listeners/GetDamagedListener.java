@@ -23,7 +23,6 @@ public class GetDamagedListener implements Listener {
         }
         Arrow arrow = (Arrow)e.getDamager();
         if(arrow.getMetadata("customBow").size()>0){
-
             if(arrow.getMetadata("customBow").get(0).asString().equals(ECustomItems.DiamondBow.toString())){
                 e.setDamage(arrow.getVelocity().length()*15.0D);
                 if(e.getDamage() > 35){
@@ -31,6 +30,13 @@ public class GetDamagedListener implements Listener {
                 }
 
                 e.getEntity().setFireTicks(60);
+            }
+        }else if(arrow.getMetadata("customDeerBow").size()>0){
+            if(arrow.getMetadata("customDeerBow").get(0).asString().equals(ECustomItems.DeerBow.toString())){
+                String loreDamage = arrow.getMetadata("customDeerBowDamage").get(0).asString().split(":")[1];
+                int damage = Integer.getInteger(loreDamage);
+
+                e.setDamage(e.getFinalDamage()+(double)damage);
             }
         }
 
@@ -40,6 +46,9 @@ public class GetDamagedListener implements Listener {
     public void OnArrowShoot(EntityShootBowEvent event){
         if(EatController.ItemEqualsToCustom(event.getBow(), CustomItemsRepository.GetCustomItem(ECustomItems.DiamondBow))){
             event.getProjectile().setMetadata("customBow", new FixedMetadataValue(Bukkit.getPluginManager().getPlugin("Rekurencja"),ECustomItems.DiamondBow));
+        }else if(EatController.ItemEqualsToCustom(event.getBow(), CustomItemsRepository.GetCustomItem(ECustomItems.DeerBow))){
+            event.getProjectile().setMetadata("customDeerBow", new FixedMetadataValue(Bukkit.getPluginManager().getPlugin("Rekurencja"),ECustomItems.DeerBow));
+            event.getProjectile().setMetadata("customDeerBowDamage",new FixedMetadataValue(Bukkit.getPluginManager().getPlugin("Rekurencja"),event.getBow().getItemMeta().getLore().get(1)));
         }else{
             return;
         }
