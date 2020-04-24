@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.rekurencja.model.ChanceItemStack;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -63,6 +64,7 @@ public class LootController {
                                 case 3:
                                     DropItemAtEventEntityLocation(event, item.GetItemFromFortuneLevel(3));
                                     break;
+                                default: throw new UnsupportedOperationException("There is not supported enchant level of looting for level: " + enchants.get(Enchantment.LOOT_BONUS_MOBS));
                             }
                         }else {
                             DropItemAtEventEntityLocation(event, item.GetItemFromFortuneLevel(0));
@@ -72,7 +74,6 @@ public class LootController {
             }
         }
     }
-
 
     public static double GenerateGauss(double deviation, double shift,double min,double max){
         Random r = new Random();
@@ -86,9 +87,7 @@ public class LootController {
 
     private static double GenerateGaussWOShift(double deviation){
         Random r = new Random();
-        while(true) {
-            double val =(r.nextGaussian()) * deviation;
-            return val;
-        }
+        double val =(r.nextGaussian()) * deviation;
+        return val;
     }
 }
