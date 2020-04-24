@@ -77,7 +77,7 @@ public class LootController {
     public static double GenerateGauss(double deviation, double shift,double min,double max){
         Random r = new Random();
         while(true) {
-            double val = (r.nextGaussian() * GenerateGaussWOShift(40) + shift);
+            double val = (r.nextGaussian() * GenerateGaussWOShift(deviation) + shift);
             if(val<= max && val >= min){
                 return val;
             }
