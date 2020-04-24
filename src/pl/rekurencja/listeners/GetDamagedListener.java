@@ -36,7 +36,7 @@ public class GetDamagedListener implements Listener {
                 String loreDamage = arrow.getMetadata("customDeerBowDamage").get(0).asString().split(":")[1];
                 int damage = Integer.getInteger(loreDamage);
 
-                e.setDamage(e.getFinalDamage()+(double)damage);
+                e.setDamage(e.getDamage()+(double)damage);
             }
         }
 
@@ -53,5 +53,4 @@ public class GetDamagedListener implements Listener {
             return;
         }
     }
-
 }

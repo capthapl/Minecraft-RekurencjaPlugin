@@ -35,7 +35,7 @@ public class CustomItemsRepository {
                 return diamondBow;
             case DeerBow:
                 Random r = new Random();
-                int avgDmg = r.nextInt(20) - 10; //-10 to 10 dmg
+                int avgDmg = r.nextInt(10 + 20) - 20; //-20 to 10 dmg
                 ItemStack deerBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Łuk z rogu jelenia",
                         "Łuk ze zmienną ilością obrażeń","Modyfikator obrazen:" + Integer.toString(avgDmg));
                 return deerBow;
