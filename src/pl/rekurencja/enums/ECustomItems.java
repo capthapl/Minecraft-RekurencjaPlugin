@@ -5,5 +5,6 @@ public enum ECustomItems {
     StrongBandage,
     Quartz,
     DiamondBow,
-    DeerBow
+    DeerBow,
+    FullMoonSword
 }

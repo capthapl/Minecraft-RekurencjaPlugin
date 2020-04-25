@@ -35,13 +35,21 @@ public class CustomItemsRepository {
                 diamondBow.addEnchantment(Enchantment.MENDING,1);
                 return diamondBow;
             case DeerBow:
-                double deerBowDmgModifier = LootController.GenerateGauss(20,0,-60,40);
-                java.text.DecimalFormat df=new java.text.DecimalFormat("0.0");
+                double deerBowDmgModifier = LootController.GenerateGauss(26,0,-5,45);
+                java.text.DecimalFormat df=new java.text.DecimalFormat("0.00");
 
                 ItemStack deerBow = RecipeController.SetNameAndLore(new ItemStack(Material.BOW,1),"Łuk z rogu jelenia",
 
                         "Łuk ze zmienną ilością obrażeń","Modyfikator obrazen:" + df.format(deerBowDmgModifier)+"%");
                 return deerBow;
+            case FullMoonSword:
+                double fullMoonSwordDmgModifier = LootController.GenerateGauss(26,0,-5,45);
+                java.text.DecimalFormat dfs=new java.text.DecimalFormat("0.00");
+
+                ItemStack fullMoonSword = RecipeController.SetNameAndLore(new ItemStack(Material.DIAMOND_SWORD,1),"Miecz pełni księżyca",
+
+                        "Miecz ze zmienną ilością obrażeń","Modyfikator obrazen:" + dfs.format(fullMoonSwordDmgModifier)+"%");
+                return fullMoonSword;
             default: throw new NotImplementedException();
         }
     }

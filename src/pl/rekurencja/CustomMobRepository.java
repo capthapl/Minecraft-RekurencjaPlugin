@@ -26,7 +26,7 @@ public class CustomMobRepository {
                 mobList.add(new CustomMob(EMob.DEATH_DANCE,2.5F));
                 break;
             case SKELETON:
-                mobList.add(new CustomMob(EMob.PHANTOM_DANCER,2.5F));
+                mobList.add(new CustomMob(EMob.PHANTOM_DANCER,8.5F));
                 break;
             default: return mobList;
         }
@@ -69,18 +69,18 @@ public class CustomMobRepository {
                 livingEntity.setCustomName("Death Dance");
                 break;
             case PHANTOM_DANCER:
-                livingEntity.getEquipment().setItemInMainHand(EnchantController.EnchantItem(new ItemStack(Material.BOW,1), Enchantment.ARROW_DAMAGE,2));
+                livingEntity.getEquipment().setItemInMainHand(EnchantController.EnchantItem(new ItemStack(Material.BOW,1), Enchantment.ARROW_DAMAGE,3));
                 livingEntity.getEquipment().setBoots(new ItemStack(Material.GOLDEN_BOOTS,1));
                 livingEntity.getEquipment().setHelmet(new ItemStack(Material.GOLDEN_HELMET,1));
-                livingEntity.getEquipment().setChestplate(EnchantController.EnchantItem(new ItemStack(Material.GOLDEN_CHESTPLATE,1),Enchantment.PROTECTION_ENVIRONMENTAL,1));
+                livingEntity.getEquipment().setChestplate(EnchantController.EnchantItem(new ItemStack(Material.GOLDEN_CHESTPLATE,1),Enchantment.PROTECTION_ENVIRONMENTAL,2));
                 livingEntity.getEquipment().setChestplateDropChance(0f);
                 livingEntity.getEquipment().setItemInMainHandDropChance(0f);
                 livingEntity.getEquipment().setLeggings(EnchantController.EnchantItem(new ItemStack(Material.GOLDEN_LEGGINGS,1),Enchantment.PROTECTION_ENVIRONMENTAL,1));
                 livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,20*99999,2));
+                livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,20*99999,1));
                 livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,20*99999,0));
-                livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,20*99999,0));
-                livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40D);
-                livingEntity.setHealth(20D);
+                livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(30D);
+                livingEntity.setHealth(30D);
                 livingEntity.setCustomName("Phantom Dancer");
                 break;
             default: throw new NotImplementedException();

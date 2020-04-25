@@ -46,7 +46,7 @@ public class EatController {
     public void EatAndGetEffectWithCustomItem(@NotNull PlayerInteractEvent event, @NotNull ECustomItems customItem ){
         ItemStack customItemFromRepository = CustomItemsRepository.GetCustomItem(customItem);
         final String cooldownId = event.getPlayer().getUniqueId().toString()+customItem.toString();
-        if(event.getPlayer().getInventory() != null && customItemFromRepository != null) {
+        if(customItemFromRepository != null) {
             if (ItemEqualsToCustom(event.getPlayer().getInventory().getItemInMainHand(), customItemFromRepository) && !cooldowns.contains(cooldownId)) {
                 event.setCancelled(true);
                 CustomItemsRepository.SetCustomItemPotionEffect(customItem, event);
@@ -73,11 +73,12 @@ public class EatController {
     }
 
     public static Boolean ItemEqualsToCustom(ItemStack p, ItemStack q){
-        if(p.getItemMeta().hasLore() && q.getItemMeta().hasLore() && (p.getItemMeta().getLore().equals(q .getItemMeta().getLore()))
-        && (p.getType() == q .getType())) {
-            return true;
+        if(p.getItemMeta()!=null && q.getItemMeta() != null) {
+            if (p.getItemMeta().hasLore() && q.getItemMeta().hasLore() && (p.getItemMeta().getLore().get(0).equals(q.getItemMeta().getLore().get(0)))
+                    && (p.getType() == q.getType())) {
+                return true;
+            }
         }
-
         return false;
     }
 }

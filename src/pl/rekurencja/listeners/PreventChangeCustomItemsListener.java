@@ -26,22 +26,26 @@ public class PreventChangeCustomItemsListener implements Listener {
             AnvilInventory anvil = (AnvilInventory) e.getInventory();
             InventoryView view = e.getView();
             int rawSlot = e.getRawSlot();
-            if(e.getSlotType() == InventoryType.SlotType.RESULT) {
-            ItemStack[] anvilContent = anvil.getContents();
-            ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
-                for (int i = 0; i < blockedItems.size(); i++) {
-                    if((anvilContent[0].getType() == Material.ENCHANTED_BOOK || anvilContent[1].getType() == Material.ENCHANTED_BOOK)
-                            && EatController.ItemEqualsToCustom(e.getCurrentItem(),blockedItems.get(i))){
+            if (e.getSlotType() == InventoryType.SlotType.RESULT) {
+                ItemStack[] anvilContent = anvil.getContents();
+                ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
+                if (e.getCurrentItem() != null) {
+                    for (int i = 0; i < blockedItems.size(); i++) {
+                        if ((anvilContent[0].getType() == Material.ENCHANTED_BOOK || anvilContent[1].getType() == Material.ENCHANTED_BOOK)
+                                && EatController.ItemEqualsToCustom(e.getCurrentItem(), blockedItems.get(i))) {
                             e.setCancelled(true);
+                        }
                     }
                 }
             }
         }
         if(e.getInventory() instanceof EnchantingInventory) {
-            ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
-            for (int i = 0; i < blockedItems.size(); i++) {
-                if(EatController.ItemEqualsToCustom(e.getCurrentItem(),blockedItems.get(i))){
-                    e.setCancelled(true);
+            if(e.getCurrentItem() != null) {
+                ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
+                for (int i = 0; i < blockedItems.size(); i++) {
+                    if (EatController.ItemEqualsToCustom(e.getCurrentItem(), blockedItems.get(i))) {
+                        e.setCancelled(true);
+                    }
                 }
             }
         }
@@ -50,10 +54,12 @@ public class PreventChangeCustomItemsListener implements Listener {
     @EventHandler
     public void OnGrindstone(InventoryClickEvent e) {
         if(e.getInventory() instanceof GrindstoneInventory) {
-            ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
-            for(int i = 0 ;i < blockedItems.size();i++) {
-                if(EatController.ItemEqualsToCustom(e.getCurrentItem(), blockedItems.get(i))){
-                    e.setCancelled(true);
+            if(e.getCurrentItem()!=null) {
+                ArrayList<ItemStack> blockedItems = CustomItemsRepository.GetBlockedInAnvilEnchantCustomItems();
+                for (int i = 0; i < blockedItems.size(); i++) {
+                    if (EatController.ItemEqualsToCustom(e.getCurrentItem(), blockedItems.get(i))) {
+                        e.setCancelled(true);
+                    }
                 }
             }
         }

@@ -59,6 +59,7 @@ public class LootRepository {
                 drop.add(new ChanceItemStack(new ItemStack(Material.EXPERIENCE_BOTTLE,1),60,35,40,45,55));
                 drop.add(new ChanceItemStack(new ItemStack(Material.ARROW,1),50,10,15,25,35));
                 drop.add(new ChanceItemStack(new ItemStack(Material.GOLDEN_APPLE,1),25,2,3,4,5));
+                drop.add(new ChanceItemStack(CustomItemsRepository.GetCustomItem(ECustomItems.FullMoonSword),13,1,1,1,1));
                 return drop;
             case PHANTOM_DANCER:
                 drop.add(new ChanceItemStack(CustomItemsRepository.GetCustomItem(ECustomItems.Bandage),50,3,4,5,6));
@@ -68,13 +69,15 @@ public class LootRepository {
                 drop.add(new ChanceItemStack(new ItemStack(Material.GOLD_INGOT,1),30,2,5,7,12));
                 drop.add(new ChanceItemStack(new ItemStack(Material.EXPERIENCE_BOTTLE,1),60,35,40,45,55));
                 drop.add(new ChanceItemStack(new ItemStack(Material.ARROW,1),50,30,45,55,65));
+                drop.add(new ChanceItemStack(new ItemStack(Material.STRING,1),50,5,8,12,15));
+
                 ItemStack bow = new ItemStack(Material.BOW,1);
                 EnchantController.EnchantItem(bow, Enchantment.ARROW_DAMAGE,4);
-                EnchantController.EnchantItem(bow, Enchantment.ARROW_INFINITE,0);
-                EnchantController.EnchantItem(bow, Enchantment.ARROW_FIRE,0);
+                EnchantController.EnchantItem(bow, Enchantment.ARROW_INFINITE,1);
+                EnchantController.EnchantItem(bow, Enchantment.ARROW_FIRE,1);
 
-                drop.add(new ChanceItemStack(bow,2,1,1,1,1));
-                drop.add(new ChanceItemStack(CustomItemsRepository.GetCustomItem(ECustomItems.DeerBow),5,1,1,1,1));
+                drop.add(new ChanceItemStack(bow,1,1,1,1,1));
+                drop.add(new ChanceItemStack(CustomItemsRepository.GetCustomItem(ECustomItems.DeerBow),13,1,1,1,1));
 
                 return drop;
             default: throw new NotImplementedException();
